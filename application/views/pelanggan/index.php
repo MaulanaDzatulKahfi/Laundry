@@ -11,6 +11,9 @@
             <tr>
                 <td>No</td>
                 <td>Nama</td>
+                <?php if ($this->session->userdata('level') == 'admin') : ?>
+                    <td>Outlet</td>
+                <?php endif ?>
                 <td>Jenis Kelamin</td>
                 <td>Alamat</td>
                 <td>No HP</td>
@@ -24,6 +27,9 @@
             <tr>
                 <td><?= $no++; ?></td>
                 <td><?= $p->nama; ?></td>
+                <?php if ($this->session->userdata('level') == 'admin') : ?>
+                    <td><?= $p->nama_outlet; ?></td>
+                <?php endif ?>
                 <td><?= $p->jk; ?></td>
                 <td><?= $p->alamat; ?></td>
                 <td><?= $p->no_hp; ?></td>

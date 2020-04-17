@@ -19,7 +19,7 @@ class C_User extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Data User';
-        $data['user'] = $this->M_crud->tampiljoin('outlet', 'user', 'id_outlet', 'id_user');
+        $data['user'] = $this->M_crud->tampiljoin('user', 'outlet', 'id_outlet');
         $this->load->view('layout/header', $data);
         $this->load->view('user/index', $data);
         $this->load->view('layout/footer');

@@ -12,8 +12,8 @@ class C_Outlet extends CI_Controller
         if ($this->session->userdata('level') == 'owner') {
             redirect('C_Laporan');
         }
-        if (!$this->session->userdata('username')) {
-            redirect('C_Auth');
+        if ($this->session->userdata('level') == 'kasir') {
+            redirect('C_Pelanggan');
         }
     }
     public function index()

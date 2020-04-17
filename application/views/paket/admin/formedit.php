@@ -43,7 +43,7 @@
                             </select>
                             <?= form_error('outlet', '<div class="text-danger">', '</div>') ?>
                         </div>
-                        <a href="<?= base_url('C_Paket/tampil') ?>" class="btn btn-success">Kembali</a>
+                        <a href="<?= base_url('C_Paket') ?>" class="btn btn-success">Kembali</a>
                         <button type="submit" class="btn btn-primary mr-auto">Edit</button>
                     </form>
                 </div>

@@ -16,7 +16,11 @@ class C_Pelanggan extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Data Pelanggan';
-        $data['pelanggan'] = $this->M_crud->tampildata('pelanggan');
+        if ($this->session->userdata('level') == 'admin') {
+            $data['pelanggan'] = $this->M_crud->tampiljoin('pelanggan', 'outlet', 'id_outlet');
+        } else {
+            $data['pelanggan'] = $this->M_crud->tampiljoin_where('pelanggan', 'outlet', 'id_outlet', ['pelanggan.id_outlet' => $this->session->userdata('id_outlet')]);
+        }
         $this->load->view('layout/header', $data);
         $this->load->view('pelanggan/index', $data);
         $this->load->view('layout/footer');
@@ -54,6 +58,7 @@ class C_Pelanggan extends CI_Controller
             $jk = htmlspecialchars($this->input->post('jk', true), ENT_QUOTES);
 
             $data = [
+                'id_outlet' => $this->session->userdata('id_outlet'),
                 'nama' => $nama,
                 'alamat' => $alamat,
                 'no_hp' => $no_hp,

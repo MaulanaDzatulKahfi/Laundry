@@ -28,14 +28,17 @@
           <li class="nav-item ml-5">
             <a class="nav-link <?= active('C_Pelanggan') ?>" href="<?= base_url('C_Pelanggan') ?>">Pelanggan</a>
           </li>
-          <li class="nav-item ml-3">
-            <a class="nav-link <?= active('C_Transaksi') ?>" href="<?= base_url('C_Transaksi') ?>">Transaksi</a>
+          <li class="nav-item dropdown <?= active('C_Transaksi') ?>">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Transaksi
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="<?= base_url('C_Transaksi') ?>">Transaksi</a>
+              <a class="dropdown-item" href="<?= base_url('C_Transaksi/data_transaksi') ?>">Data Transaksi</a>
+            </div>
           </li>
           <li class="nav-item ml-3">
             <a class="nav-link <?= active('C_Laporan') ?>" href="<?= base_url('C_Laporan') ?>">Laporan</a>
-          </li>
-          <li class="nav-item ml-3">
-            <a class="nav-link <?= active('C_Riwayat') ?>" href="<?= base_url('C_Riwayat') ?>">Riwayat</a>
           </li>
           <li class="nav-item ml-3">
             <a class="nav-link <?= active('C_Paket') ?>" href="<?= base_url('C_Paket') ?>">Paket</a>
@@ -47,26 +50,28 @@
             <a class="nav-link <?= active('C_Outlet') ?>" href="<?= base_url('C_Outlet') ?>">Outlet</a>
           </li>
         <?php endif ?>
+        <!-- jika kasir login -->
         <?php if ($this->session->userdata('level') == 'kasir') : ?>
           <li class="nav-item ml-5">
             <a class="nav-link <?= active('C_Pelanggan') ?>" href="<?= base_url('C_Pelanggan') ?>">Pelanggan</a>
           </li>
-          <li class="nav-item ml-3">
-            <a class="nav-link <?= active('C_Transaksi') ?>" href="<?= base_url('C_Transaksi') ?>">Transaksi</a>
+          <li class="nav-item dropdown <?= active('C_Transaksi') ?>">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Transaksi
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="<?= base_url('C_Transaksi') ?>">Transaksi</a>
+              <a class="dropdown-item" href="<?= base_url('C_Transaksi/data_transaksi') ?>">Data Transaksi</a>
+            </div>
           </li>
           <li class="nav-item ml-3">
             <a class="nav-link <?= active('C_Laporan') ?>" href="<?= base_url('C_Laporan') ?>">Laporan</a>
           </li>
-          <li class="nav-item ml-3">
-            <a class="nav-link <?= active('C_Riwayat') ?>" href="<?= base_url('C_Riwayat') ?>">Riwayat</a>
-          </li>
         <?php endif ?>
+        <!-- jika owner login -->
         <?php if ($this->session->userdata('level') == 'owner') : ?>
           <li class="nav-item ml-3">
             <a class="nav-link <?= active('C_Laporan') ?>" href="<?= base_url('C_Laporan') ?>">Laporan</a>
-          </li>
-          <li class="nav-item ml-3">
-            <a class="nav-link <?= active('C_Riwayat') ?>" href="<?= base_url('C_Riwayat') ?>">Riwayat</a>
           </li>
         <?php endif ?>
       </ul>

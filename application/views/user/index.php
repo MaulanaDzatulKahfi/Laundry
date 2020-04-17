@@ -29,7 +29,7 @@
                     <td>
                         <a href="<?= base_url('C_User/formedituser/' . $u->id_user) ?>" class="badge badge-primary">Edit</a>
                         <a href="<?= base_url('C_User/hapususer/' . $u->id_user) ?>" onclick="return confirm('apa anda yakin? data dihapus?')" class="badge badge-danger">Hapus</a>
-                        <a href="<?= base_url('C_User/resetpass/' . $u->id_user) ?>" onclick="return confirm('apa anda yakin? password di reset?')" class="badge badge-warning">Reset Password</a>
+                        <a href="<?= base_url('C_User/resetpass/' . $u->id_user) ?>" onclick="return confirm('apa anda yakin? password di reset menjadi : 123')" class="badge badge-warning">Reset Password</a>
                     </td>
                 </tr>
             <?php endif ?>

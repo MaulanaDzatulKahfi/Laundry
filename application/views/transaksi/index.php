@@ -1,14 +1,14 @@
 <div class="mt-3 ml-3">
-    <?php if ($this->session->flashdata()) : ?>
-        <div class="alert alert-danger mt-3">
+    <?php if ($this->session->flashdata('pesan')) : ?>
+        <div class="alert alert-success mt-3">
             <?= $this->session->flashdata('pesan'); ?>
         </div>
     <?php endif ?>
-    <form class="form-inline my-2 my-lg-0" action="" method="POST">
-        <input type="hidden" name="<?= csrf()['name'] ?>" value="<?= csrf()['hash'] ?>">
-        <input type="search" placeholder="cari paket" class="form-control mr-sm-2 col-5">
-        <button class="btn btn-primary" type="submit">Cari</button>
-    </form>
+    <?php if ($this->session->flashdata('gagal')) : ?>
+        <div class="alert alert-danger mt-3">
+            <?= $this->session->flashdata('gagal'); ?>
+        </div>
+    <?php endif ?>
 </div>
 <div class="row">
     <div class="col-lg-6">
@@ -57,23 +57,37 @@
                                     <input type="text" name="nama" class="form-control" id="auto">
                                     <?= form_error('nama', '<div class="text-danger">', '</div>') ?>
                                 </div>
-                                <div class="form-group">
-                                    <label for="name"><b>Diskon </b><span class="text-danger">*</span></label>
-                                    <input type="number" name="diskon" class="form-control" value="0">
-                                    <?= form_error('diskon', '<div class="text-danger">', '</div>') ?>
+                                <div class="form-group row">
+                                    <div class="col-4">
+                                        <label for="name"><b>Diskon </b><span class="text-danger">*</span></label>
+                                        <input type="number" name="diskon" class="form-control" value="0">
+                                        <?= form_error('diskon', '<div class="text-danger">', '</div>') ?>
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="name"><b>Biaya Tambahan </b><span class="text-danger">*</span></label>
+                                        <input type="number" name="biaya" class="form-control" value="0">
+                                        <?= form_error('biaya', '<div class="text-danger">', '</div>') ?>
+                                    </div>
+                                    <div class="col-4">
+                                        <label for="name"><b>Pajak </b><span class="text-danger">*</span></label>
+                                        <input type="number" name="pajak" class="form-control" value="0">
+                                        <?= form_error('pajak', '<div class="text-danger">', '</div>') ?>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="name"><b>Pajak </b><span class="text-danger">*</span></label>
-                                    <input type="number" name="pajak" class="form-control" value="0">
-                                    <?= form_error('pajak', '<div class="text-danger">', '</div>') ?>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name"><b>Status Pembayaran </b><span class="text-danger">*</span></label>
-                                    <select name="status_pembayaran" class="form-control">
-                                        <option value="belum_dibayar">belum dibayar</option>
-                                        <option value="dibayar">dibayar</option>
-                                    </select>
-                                    <?= form_error('status_pembayaran', '<div class="text-danger">', '</div>') ?>
+                                <div class="form-group row">
+                                    <div class="col-6">
+                                        <label for="name"><b>Status Pembayaran </b><span class="text-danger">*</span></label>
+                                        <select name="status_pembayaran" class="form-control">
+                                            <option value="belum_dibayar">belum dibayar</option>
+                                            <option value="dibayar">dibayar</option>
+                                        </select>
+                                        <?= form_error('status_pembayaran', '<div class="text-danger">', '</div>') ?>
+                                    </div>
+                                    <div class="col-6">
+                                        <label for="name"><b>Batas Waktu </b><span class="text-danger">*</span></label>
+                                        <input type="date" class="form-control" name="batas_waktu">
+                                        <?= form_error('batas_waktu', '<div class="text-danger">', '</div>') ?>
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="name"><b>Keterangan </b><span class="text-danger">*</span></label>
