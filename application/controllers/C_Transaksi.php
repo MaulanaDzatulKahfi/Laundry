@@ -215,12 +215,18 @@ class C_Transaksi extends CI_Controller
     public function detail($id)
     {
         $data['judul'] = 'Detail';
-        $data['pelanggan'] = $this->M_crud->join4_where(['id_transaksi' => $id]);
-        $data['detail'] = $this->M_crud->join3($id);
-        $data['ket'] = $this->M_crud->ket_join3($id);
-        $this->load->view('layout/header', $data);
-        $this->load->view('transaksi/detail', $data);
-        $this->load->view('layout/footer');
+        $a = $this->M_crud->formeditdata('transaksi', 'id_transaksi', $id);
+        if ($a->id_transaksi) {
+            $data['pelanggan'] = $this->M_crud->join4_where(['id_transaksi' => $id]);
+            $data['detail'] = $this->M_crud->join3($id);
+            $data['ket'] = $this->M_crud->ket_join3($id);
+            $this->load->view('layout/header', $data);
+            $this->load->view('transaksi/detail', $data);
+            $this->load->view('layout/footer');
+        } else {
+            $this->session->set_flashdata('gagal', 'ID Tidak Ditemukan');
+            redirect('C_Transaksi/data_transaksi');
+        }
     }
     public function bayar($id)
     {
@@ -234,26 +240,50 @@ class C_Transaksi extends CI_Controller
     }
     public function selesai($id)
     {
-        $data = [
-            'status' => 'selesai'
-        ];
-        $this->M_crud->editdata('transaksi', 'id_transaksi', $id, $data);
-        $this->session->set_flashdata('pesan', 'Data Berhasil diperbarui');
-        redirect('C_Transaksi/data_transaksi');
+        $a = $this->M_crud->formeditdata('transaksi', 'id_transaksi', $id);
+        if ($a->status !== 'diambil') {
+            $data = [
+                'status' => 'selesai'
+            ];
+            $this->M_crud->editdata('transaksi', 'id_transaksi', $id, $data);
+            $this->session->set_flashdata('pesan', 'Data Berhasil diperbarui');
+            redirect('C_Transaksi/data_transaksi');
+        } else {
+            $this->session->set_flashdata('gagal', 'Data Sudah diambil');
+            redirect('C_Transaksi/data_transaksi');
+        }
     }
     public function ambil($id)
     {
-        $data = [
-            'status' => 'diambil'
-        ];
-        $this->M_crud->editdata('transaksi', 'id_transaksi', $id, $data);
-        $this->session->set_flashdata('pesan', 'Berhasil Diambil');
-        redirect('C_Transaksi/data_transaksi');
+        $a = $this->M_crud->formeditdata('transaksi', 'id_transaksi', $id);
+        if ($a->id_transaksi) {
+            $data = [
+                'status' => 'diambil'
+            ];
+            $this->M_crud->editdata('transaksi', 'id_transaksi', $id, $data);
+            $this->session->set_flashdata('pesan', 'Berhasil Diambil');
+            redirect('C_Transaksi/data_transaksi');
+        } else {
+            $this->session->set_flashdata('gagal', 'ID Tidak Ditemukan');
+            redirect('C_Transaksi/data_transaksi');
+        }
     }
     public function hapus($id)
     {
-        $this->M_crud->hapusdata('transaksi', 'id_transaksi', $id);
-        $this->session->set_flashdata('pesan', 'Transaksi Berhasil Dihapus');
-        redirect('C_Transaksi/data_transaksi');
+        $a = $this->M_crud->formeditdata('transaksi', 'id_transaksi', $id);
+        if ($a->id_transaksi) {
+
+            if ($a->status == 'proses') {
+                $this->M_crud->hapusdata('transaksi', 'id_transaksi', $id);
+                $this->session->set_flashdata('pesan', 'Transaksi Berhasil Dihapus');
+                redirect('C_Transaksi/data_transaksi');
+            } else {
+                $this->session->set_flashdata('gagal', 'Data Tidak Bisa Dihapus');
+                redirect('C_Transaksi/data_transaksi');
+            }
+        } else {
+            $this->session->set_flashdata('gagal', 'ID Tidak Ditemukan');
+            redirect('C_Transaksi/data_transaksi');
+        }
     }
 }

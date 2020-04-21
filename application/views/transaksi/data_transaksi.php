@@ -1,8 +1,13 @@
 <div class="container">
     <h3 class="text-center mt-3"><?= $judul; ?></h3>
-    <?php if ($this->session->flashdata()) : ?>
+    <?php if ($this->session->flashdata('pesan')) : ?>
         <div class="alert alert-success mt-3">
             <?= $this->session->flashdata('pesan'); ?>
+        </div>
+    <?php endif ?>
+    <?php if ($this->session->flashdata('gagal')) : ?>
+        <div class="alert alert-danger mt-3">
+            <?= $this->session->flashdata('gagal'); ?>
         </div>
     <?php endif ?>
     <table class="table table-bordered mt-3" id="data">
