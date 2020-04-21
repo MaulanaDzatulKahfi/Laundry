@@ -38,13 +38,14 @@
                     <a target="_blank" href="<?= base_url('C_Transaksi/detail/' . $t->id_transaksi) ?>" class="badge badge-primary">Detail</a>
                     <?php if ($t->status == 'proses') : ?>
                         <a href="<?= base_url('C_Transaksi/selesai/' . $t->id_transaksi) ?>" onclick="return confirm('Yakin Apakah Barang Telah selesai Dicuci')" class="badge badge-warning">Selesai</a>
+                        <a href="<?= base_url('C_Transaksi/hapus/' . $t->id_transaksi) ?>" onclick="return confirm('apa anda yakin? data dihapus?')" class="badge badge-danger">Hapus</a>
                     <?php endif ?>
                     <?php if ($t->dibayar == 'dibayar' && $t->status == 'selesai') : ?>
                         <a href="<?= base_url('C_Transaksi/ambil/' . $t->id_transaksi) ?>" onclick="return confirm('apa anda yakin barang akan diambil?')" class="badge badge-secondary">Ambil</a>
                     <?php endif ?>
-                    <?php if ($t->dibayar == 'belum_dibayar' && $t->status == 'proses') : ?>
+                    <!-- <?php if ($t->dibayar == 'dibayar' && $t->dibayar == 'belum_dibayar' && $t->status == 'proses') : ?>
                         <a href="<?= base_url('C_Transaksi/hapus/' . $t->id_transaksi) ?>" onclick="return confirm('apa anda yakin? data dihapus?')" class="badge badge-danger">Hapus</a>
-                    <?php endif ?>
+                    <?php endif ?> -->
                 </td>
             </tr>
         <?php endforeach;
