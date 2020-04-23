@@ -85,6 +85,7 @@ class C_Transaksi extends CI_Controller
             $id_paket = $this->input->post('id_paket');
             $batas_waktu = htmlspecialchars($this->input->post('batas_waktu'), ENT_QUOTES);
             $biaya = htmlspecialchars($this->input->post('biaya'), ENT_QUOTES);
+            $invoice = $this->M_crud->get_invoice();
             $jum_total = $this->input->post('total');
             $jum_diskon = $jum_total * $diskon / 100;
             $jum_pajak = $jum_total * $pajak / 100;
@@ -93,11 +94,11 @@ class C_Transaksi extends CI_Controller
                 if ($this->cart->contents()) {
                     if ($status == 'dibayar') {
                         $trs = [
-                            'id_transaksi' => 'TRS' . date('dmyHis'),
+                            'id_transaksi' => date('ymdhis'),
                             'id_outlet' => $this->session->userdata('id_outlet'),
                             'id_pelanggan' => $pelanggan,
                             'id_user' => $this->session->userdata('id_user'),
-                            'kode_invoice' => date('dmyhis'),
+                            'kode_invoice' => $invoice,
                             'tgl' => date('y-m-d'),
                             'tgl_bayar' => date('Y-m-d H-i-s'),
                             'batas_waktu' => $batas_waktu,
@@ -110,11 +111,11 @@ class C_Transaksi extends CI_Controller
                         ];
                     } else {
                         $trs = [
-                            'id_transaksi' => 'TRS' . date('dmyHis'),
+                            'id_transaksi' => date('ymdhis'),
                             'id_outlet' => $this->session->userdata('id_outlet'),
                             'id_pelanggan' => $pelanggan,
                             'id_user' => $this->session->userdata('id_user'),
-                            'kode_invoice' => date('dmyhis'),
+                            'kode_invoice' => $invoice,
                             'tgl' => date('y-m-d'),
                             'batas_waktu' => $batas_waktu,
                             'dibayar' => $status,
@@ -129,7 +130,7 @@ class C_Transaksi extends CI_Controller
                     $dtrs = [];
                     foreach ($id_paket as $key => $value) {
                         $dtrs[] = [
-                            'id_transaksi' => 'TRS' . date('dmyHis'),
+                            'id_transaksi' => date('ymdhis'),
                             'id_paket' => $_POST['id_paket'][$key],
                             'qty' => $_POST['qty'][$key],
                             'keterangan' => $ket
@@ -137,8 +138,8 @@ class C_Transaksi extends CI_Controller
                     }
                     $this->db->insert_batch('detail_transaksi', $dtrs);
                     $this->cart->destroy();
-                    $this->session->set_flashdata('pesan', 'Transaksi Berhasil');
-                    redirect('C_Transaksi/data_transaksi');
+                    $this->session->set_flashdata('pesan', 'Transaksi Berhasil, Dengan Kode Invoice : ' . $invoice);
+                    redirect('C_Transaksi');
                 } else {
                     $this->session->set_flashdata('gagal', 'Paket tidak ada di keranjang');
                     redirect('C_transaksi');

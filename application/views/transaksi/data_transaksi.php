@@ -19,6 +19,7 @@
                 <td>Nama Pelanggan</td>
                 <?php if ($this->session->userdata('level') == 'admin') : ?>
                     <td>Outlet</td>
+                    <td>Nama User</td>
                 <?php endif ?>
                 <td>Status Cucian</td>
                 <td>Status Pembayaran</td>
@@ -36,6 +37,7 @@
                 <td><?= $t->nama; ?></td>
                 <?php if ($this->session->userdata('level') == 'admin') : ?>
                     <td><?= $t->nama_outlet; ?></td>
+                    <td><?= $t->nama_user; ?></td>
                 <?php endif ?>
                 <td><?= $t->status; ?></td>
                 <td><?= $t->dibayar; ?></td>

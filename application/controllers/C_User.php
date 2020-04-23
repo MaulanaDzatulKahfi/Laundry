@@ -82,9 +82,8 @@ class C_User extends CI_Controller
     }
     private function _edituser($id)
     {
-        $this->form_validation->set_rules('username', 'Username', 'trim|required|is_unique[user.username]', [
-            'required' => 'harus diisi',
-            'is_unique' => 'username sudah ada'
+        $this->form_validation->set_rules('username', 'Username', 'trim|required', [
+            'required' => 'harus diisi'
         ]);
         $this->form_validation->set_rules('level', 'Level', 'trim|required', [
             'required' => 'harus diisi'

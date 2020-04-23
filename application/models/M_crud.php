@@ -92,4 +92,19 @@ class M_crud extends CI_Model
         $this->db->or_like($field3, $key);
         return $this->db->get()->result();
     }
+    function get_invoice()
+    {
+        $q = $this->db->query("SELECT MAX(RIGHT(kode_invoice,4)) AS kd_max FROM transaksi WHERE DATE(tgl)=CURDATE()");
+        $kd = "";
+        if ($q->num_rows() > 0) {
+            foreach ($q->result() as $k) {
+                $tmp = ((int) $k->kd_max) + 1;
+                $kd = sprintf("%04s", $tmp);
+            }
+        } else {
+            $kd = "0001";
+        }
+        date_default_timezone_set('Asia/Jakarta');
+        return date('dmy') . $kd;
+    }
 }
