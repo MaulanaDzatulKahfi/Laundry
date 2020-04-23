@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2020 at 04:35 PM
+-- Generation Time: Apr 23, 2020 at 06:29 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.3.11
 
@@ -41,11 +41,11 @@ CREATE TABLE `detail_transaksi` (
 --
 
 INSERT INTO `detail_transaksi` (`id_detail_transaksi`, `id_transaksi`, `id_paket`, `qty`, `keterangan`) VALUES
-(20, 'TRS090420212507', 7, 1, '-'),
-(21, 'TRS090420213027', 7, 1, '-'),
-(22, 'TRS090420213027', 9, 1, '-'),
-(23, 'TRS090420213330', 7, 1, '-'),
-(24, 'TRS090420213330', 9, 1, '-');
+(10, '200423084527', 7, 1, '-'),
+(11, '200423084527', 9, 1, '-'),
+(18, '200423084837', 7, 1, '-'),
+(19, '200423084837', 4, 1, '-'),
+(20, '200423084837', 9, 1, '-');
 
 -- --------------------------------------------------------
 
@@ -146,9 +146,8 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `id_outlet`, `id_pelanggan`, `id_user`, `kode_invoice`, `tgl`, `batas_waktu`, `tgl_bayar`, `biaya_tambahan`, `diskon`, `pajak`, `status`, `dibayar`, `total_harga`) VALUES
-('TRS090420212507', 3, 6, 1, '090420092507', '2020-04-09', '2020-04-09', '2020-04-09 21:25:25', 0, 0, 0, 'diambil', 'dibayar', 7500),
-('TRS090420213027', 2, 1, 12, '090420093027', '2020-04-09', '2020-04-10', '2020-04-09 21:31:16', 0, 0, 0, 'diambil', 'dibayar', 32500),
-('TRS090420213330', 2, 1, 12, '090420093330', '2020-04-09', '2020-04-02', '0000-00-00 00:00:00', 0, 0, 0, 'proses', 'belum_dibayar', 32500);
+('200423084527', 2, 1, 12, '2304200001', '2020-04-23', '2020-04-23', '0000-00-00 00:00:00', 0, 0, 0, 'proses', 'belum_dibayar', 32500),
+('200423084837', 2, 2, 12, '2304200002', '2020-04-23', '2020-04-23', '2020-04-23 20:48:37', 20000, 10, 5, 'proses', 'dibayar', 55625);
 
 -- --------------------------------------------------------
 
@@ -227,7 +226,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `detail_transaksi`
 --
 ALTER TABLE `detail_transaksi`
-  MODIFY `id_detail_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id_detail_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `outlet`
